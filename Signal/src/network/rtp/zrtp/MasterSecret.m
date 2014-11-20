@@ -104,7 +104,7 @@
                     s2Length,
                     s3Length
                     
-                    ] concatDatas];
+                    ] ows_concatDatas];
     
     return [data hashWithSHA256];
 }
@@ -125,7 +125,7 @@
                     [[dhPart1 embeddedIntoHandshakePacket] dataUsedForAuthentication],
                     [[dhPart2 embeddedIntoHandshakePacket] dataUsedForAuthentication]
                     
-                    ] concatDatas];
+                    ] ows_concatDatas];
     
     return [data hashWithSHA256];
     
@@ -177,13 +177,13 @@
                      
                      self.counter,
                      label.encodedAsUtf8,
-                     [@[@0] toUint8Data],
+                     [@[@0] ows_toUint8Data],
                      self.initiatorZid.data,
                      self.responderZid.data,
                      self.totalHash,
                      [NSData dataWithBigEndianBytesOfUInt32:truncatedLength]
                      
-                     ].concatDatas;
+                     ].ows_concatDatas;
     
     NSData* digest = [input hmacWithSHA256WithKey:self.sharedSecret];
     

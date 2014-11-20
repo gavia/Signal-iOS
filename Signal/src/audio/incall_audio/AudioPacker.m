@@ -40,7 +40,7 @@
     if (self.framesToSend.count < AUDIO_FRAMES_PER_PACKET) { return nil; }
     
     uint16_t sequenceNumber = self.nextSequenceNumber++;
-    NSData* payload = [self.framesToSend concatDatas];
+    NSData* payload = [self.framesToSend ows_concatDatas];
     
     [self.framesToSend removeAllObjects];
     return [[EncodedAudioPacket alloc] initWithAudioData:payload andSequenceNumber:sequenceNumber];

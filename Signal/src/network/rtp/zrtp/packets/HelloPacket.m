@@ -182,8 +182,8 @@
             self.hashChainH3,
             self.zid.data,
             [self generateFlags],
-            [[@[self.hashIds, self.cipherIds, self.authIds, self.agreeIds, self.sasIds] concatArrays] concatDatas]
-            ] concatDatas];
+            [[@[self.hashIds, self.cipherIds, self.authIds, self.agreeIds, self.sasIds] ows_concatArrays] ows_concatDatas]
+            ] ows_concatDatas];
 }
 
 - (void)verifyMacWithHashChainH2:(NSData*)hashChainH2 {
