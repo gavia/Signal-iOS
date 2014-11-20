@@ -41,11 +41,10 @@
     testThrows([[IPAddress alloc] initIPv4AddressFromString:@"0db8:85a3:0000:0000:8a2e:0370:7334"]);
     testThrows([[IPAddress alloc] initIPv4AddressFromString:@"AAAA:2001:0db8:85a3:0000:0000:8a2e:0370:7334"]);
     
-    /* This doesn't actually get tested?
-    [[IPAddress alloc] initIPv4AddressFromString:@"127.0.0.1"];
-    [[IPAddress alloc] initIPv4AddressFromString:@"255.255.255.255"];
-    [[IPAddress alloc] initIPv4AddressFromString:@"0.0.0.0"];
-     */
+    IPAddress* ip;
+    ip = [[IPAddress alloc] initIPv4AddressFromString:@"127.0.0.1"];
+    ip = [[IPAddress alloc] initIPv4AddressFromString:@"255.255.255.255"];
+    ip = [[IPAddress alloc] initIPv4AddressFromString:@"0.0.0.0"];
     
     testThrows([[IPAddress alloc] initIPv4AddressFromString:@"AB01::"]);
     testThrows([[IPAddress alloc] initIPv4AddressFromString:@"::AB01"]);
@@ -67,13 +66,12 @@
     testThrows([[IPAddress alloc] initIPv6AddressFromString:@"255.255.255.255"]);
     testThrows([[IPAddress alloc] initIPv6AddressFromString:@"0.0.0.0"]);
     
-    /* This doesn't actually get tested?
-    [[IPAddress alloc] initIPv6AddressFromString:@"AB01::"];
-    [[IPAddress alloc] initIPv6AddressFromString:@"ab01::"];
-    [[IPAddress alloc] initIPv6AddressFromString:@"::AB01"];
-    [[IPAddress alloc] initIPv6AddressFromString:@"AB01::1001"];
-    [[IPAddress alloc] initIPv6AddressFromString:@"2001:0db8:85a3:0000:0000:8a2e:0370:7334"];
-     */
+    IPAddress* ip;
+    ip = [[IPAddress alloc] initIPv6AddressFromString:@"AB01::"];
+    ip = [[IPAddress alloc] initIPv6AddressFromString:@"ab01::"];
+    ip = [[IPAddress alloc] initIPv6AddressFromString:@"::AB01"];
+    ip = [[IPAddress alloc] initIPv6AddressFromString:@"AB01::1001"];
+    ip = [[IPAddress alloc] initIPv6AddressFromString:@"2001:0db8:85a3:0000:0000:8a2e:0370:7334"];
 }
 
 -(void) testDescription {
