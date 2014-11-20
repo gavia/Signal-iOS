@@ -55,7 +55,7 @@ static ThreadManager* sharedInstance = nil;
 
 + (void)terminate {
     @synchronized(self) {
-        if (sharedInstance == nil) return;
+        if (sharedInstance == nil) { return; }
         [sharedInstance.low terminate];
         [sharedInstance.normal terminate];
         [sharedInstance.high terminate];

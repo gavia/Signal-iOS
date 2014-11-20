@@ -32,7 +32,7 @@
                            untilCancelled:(TOCCancelToken*)untilCancelledToken {
     
     require(callback != nil);
-    if (untilCancelledToken.isAlreadyCancelled) return;
+    if (untilCancelledToken.isAlreadyCancelled) { return; }
     
     void(^callbackCopy)(id value) = [callback copy];
     [self queueRun:^{
@@ -96,7 +96,7 @@
 
 - (void)updateValue:(id)value {
     [self queueRun:^{
-        if (value == self.currentValue) return;
+        if (value == self.currentValue) { return; }
         requireState(!self.sealed);
         
         self.currentValue = value;
@@ -111,7 +111,7 @@
     [self queueRun:^{
         id oldValue = self.currentValue;
         id newValue = adjustment(oldValue);
-        if (oldValue == newValue) return;
+        if (oldValue == newValue)  { return; }
         requireState(!self.sealed);
         
         self.currentValue = newValue;

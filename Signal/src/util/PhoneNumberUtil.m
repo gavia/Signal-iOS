@@ -88,9 +88,9 @@
     
     // Backtrack to find desired corresponding offset
     for (NSUInteger i = n, j = m; ; i -= 1) {
-        if (i == offset && preferHigh) return j; // early exit
+        if (i == offset && preferHigh) { return j; } // early exit
         while (moves[i][j] == +1) j -= 1; // zip upward
-        if (i == offset) return j; // late exit
+        if (i == offset) { return j; } // late exit
         if (moves[i][j] == 0) j -= 1;
     }
 }

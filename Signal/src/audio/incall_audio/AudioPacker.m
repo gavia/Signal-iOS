@@ -37,7 +37,7 @@
 }
 
 - (EncodedAudioPacket*)tryGetFinishedAudioPacket {
-    if (self.framesToSend.count < AUDIO_FRAMES_PER_PACKET) return nil;
+    if (self.framesToSend.count < AUDIO_FRAMES_PER_PACKET) { return nil; }
     
     uint16_t sequenceNumber = self.nextSequenceNumber++;
     NSData* payload = [self.framesToSend concatDatas];

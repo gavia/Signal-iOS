@@ -64,10 +64,10 @@ static double STRETCH_MODE_FACTORS[] = {1/0.95, 1, 1/1.05, 0.5};
         [self.decayingBufferDepthMeasure forceEstimateTo:desiredBufferDepth];
         return STRETCH_MODE_NORMAL;
     }
-    if (shouldStartSuperShrink) return STRETCH_MODE_SUPER_SHRINK;
-    if (shouldStartShrink) return STRETCH_MODE_SHRINK;
-    if (shouldStartExpand) return STRETCH_MODE_EXPAND;
-    if (shouldMaintainShrink || shouldMaintainExpand || shouldMaintainSuperShrink) return self.currentStretchMode;
+    if (shouldStartSuperShrink) { return STRETCH_MODE_SUPER_SHRINK; }
+    if (shouldStartShrink) { return STRETCH_MODE_SHRINK; }
+    if (shouldStartExpand) { return STRETCH_MODE_EXPAND; }
+    if (shouldMaintainShrink || shouldMaintainExpand || shouldMaintainSuperShrink) { return self.currentStretchMode; }
     return STRETCH_MODE_NORMAL;
 }
 

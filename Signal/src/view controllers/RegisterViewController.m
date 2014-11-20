@@ -126,7 +126,7 @@
 - (void)registerPhoneNumberTapped {
     NSString* phoneNumber = [NSString stringWithFormat:@"%@%@", self.countryCodeLabel.text, self.phoneNumberTextField.text];
     PhoneNumber* localNumber = [PhoneNumber tryParsePhoneNumberFromUserSpecifiedText:phoneNumber];
-    if (localNumber == nil) return;
+    if (localNumber == nil) { return; }
     
     [self.phoneNumberTextField resignFirstResponder];
     

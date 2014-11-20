@@ -11,7 +11,7 @@
     __block NSTimeInterval t = [TimeUtil time] - duration;
     return [[AnonymousValueLogger alloc] initWithLogValue:^(double value) {
         double t2 = [TimeUtil time];
-        if (t2 - duration < t) return;
+        if (t2 - duration < t) { return; }
         t = t2;
         
         [valueLogger logValue:value];
@@ -23,7 +23,7 @@
     __block NSTimeInterval t = [TimeUtil time] - duration;
     return [[AnonymousOccurrenceLogger alloc] initWithMarker:^(id details) {
         double t2 = [TimeUtil time];
-        if (t2 - duration < t) return;
+        if (t2 - duration < t) { return; }
         t = t2;
         
         [occurrenceLogger markOccurrence:details];

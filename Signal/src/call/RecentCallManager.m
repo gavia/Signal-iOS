@@ -75,7 +75,7 @@ typedef BOOL (^SearchTermConditionalBlock)(RecentCall*, NSUInteger, BOOL*);
 }
 
 - (Contact*)tryGetContactForCall:(CallState*)call {
-    if (call.potentiallySpecifiedContact != nil) return call.potentiallySpecifiedContact;
+    if (call.potentiallySpecifiedContact != nil) { return call.potentiallySpecifiedContact; }
     return [self tryGetContactForNumber:call.remoteNumber];
 }
 

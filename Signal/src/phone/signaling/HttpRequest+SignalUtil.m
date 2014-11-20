@@ -15,13 +15,13 @@
 @implementation HTTPRequest (SignalUtil)
 
 - (NSNumber*)tryGetSessionId {
-    if (![self.location hasPrefix:@"/session/"]) return nil;
+    if (![self.location hasPrefix:@"/session/"]) { return nil; }
     
     NSString* sessionIdText = [self.location substringFromIndex:@"/session/".length];
     sessionIdText = [sessionIdText stringByTrimmingCharactersInSet:NSCharacterSet.whitespaceCharacterSet];
     NSNumber* sessionIdNumber = [sessionIdText tryParseAsDecimalNumber];
 
-    if (sessionIdNumber.hasLongLongValue) return sessionIdNumber;
+    if (sessionIdNumber.hasLongLongValue) { return sessionIdNumber; }
     
     return nil;
 }

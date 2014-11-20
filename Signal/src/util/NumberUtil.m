@@ -11,14 +11,14 @@
 }
 
 + (int8_t)signOfInt32:(int32_t)value {
-    if (value < 0) return -1;
-    if (value > 0) return +1;
+    if (value < 0) { return -1; }
+    if (value > 0) { return +1; }
     return 0;
 }
 
 + (int8_t)signOfDouble:(double)value {
-    if (value < 0) return -1;
-    if (value > 0) return +1;
+    if (value < 0) { return -1; }
+    if (value > 0) { return +1; }
     return 0;
 }
 
@@ -44,8 +44,8 @@
           toMin:(double)min
          andMax:(double)max {
     require(min <= max);
-    if (value < min) return min;
-    if (value > max) return max;
+    if (value < min) { return min; }
+    if (value > max) { return max; }
     return value;
 }
 

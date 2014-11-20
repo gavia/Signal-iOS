@@ -155,7 +155,7 @@ andSupportedKeyAgreementProtocols:(NSArray*)keyAgreementProtocolsInDescendingPri
 + (id<Logging>)logging {
     // Many tests create objects that rely on Environment only for logging.
     // So we bypass the nil check in getCurrent and silently don't log during unit testing, instead of failing hard.
-    if (environment == nil) return nil;
+    if (environment == nil) { return nil; }
     
     return Environment.getCurrent.logging;
 }

@@ -66,7 +66,7 @@
 }
 
 - (bool)containsPhoneNumber:(PhoneNumber*)phoneNumber {
-    if (phoneNumber == nil) return false;
+    if (phoneNumber == nil) { return false; }
     return [self.bloomFilter contains:phoneNumber.toE164];
 }
 

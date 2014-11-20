@@ -74,7 +74,7 @@
     require(baseTimeout >= 0);
     require(timeoutRetryFactor >= 0);
     
-    if (maxTryCount == 0) return TOCFuture.futureWithTimeoutFailure;
+    if (maxTryCount == 0) { return TOCFuture.futureWithTimeoutFailure; }
     
     TOCFuture* futureResult = [TOCFuture futureFromUntilOperation:operation
                                              withOperationTimeout:baseTimeout

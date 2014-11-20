@@ -24,7 +24,7 @@
 }
 
 - (id)tryDequeue {
-    if (self.count == 0) return nil;
+    if (self.count == 0) { return nil; }
     return [self dequeue];
 }
 

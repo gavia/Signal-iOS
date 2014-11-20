@@ -90,7 +90,7 @@
 
 - (IPEndPoint*)remoteEndPoint {
     requireState(self.isRemoteEndPointKnown);
-    if (self.specifiedRemoteEndPoint != nil) return self.specifiedRemoteEndPoint;
+    if (self.specifiedRemoteEndPoint != nil) { return self.specifiedRemoteEndPoint; }
     return self.clientConnectedFromRemoteEndPoint;
 }
 
@@ -103,7 +103,7 @@
 
 - (in_port_t)localPort {
     requireState(self.isLocalPortKnown);
-    if (self.specifiedLocalPort != 0) return self.specifiedLocalPort;
+    if (self.specifiedLocalPort != 0) { return self.specifiedLocalPort; }
     return self.measuredLocalPort;
 }
 
@@ -167,7 +167,7 @@ void onReceivedData(CFSocketRef socket, CFSocketCallBackType type, CFDataRef add
 }
 
 - (void)setupRemoteEndPoint {
-    if (self.specifiedRemoteEndPoint == nil) return;
+    if (self.specifiedRemoteEndPoint == nil) { return; }
     
     CFSocketError connectResult = CFSocketConnectToAddress(self.socket,
                                                            (__bridge CFDataRef)[self.specifiedRemoteEndPoint sockaddrData],
@@ -186,7 +186,7 @@ void onReceivedData(CFSocketRef socket, CFSocketCallBackType type, CFDataRef add
     @synchronized(self) {
         bool isFirstTime = self.currentHandler == nil;
         self.currentHandler = handler;
-        if (!isFirstTime) return;
+        if (!isFirstTime) { return; }
     }
     
     @try {

@@ -156,7 +156,7 @@
     TOCFuture* futureRelaySocket = [futureFirstResponseData thenTry:^id(NSData* openPortResponseData) {
         HTTPResponse* openPortResponse = [HTTPResponse httpResponseFromData:openPortResponseData];
         [logger markOccurrence:openPortResponse];
-        if (!openPortResponse.isOkResponse) return [TOCFuture futureWithFailure:openPortResponse];
+        if (!openPortResponse.isOkResponse) { return [TOCFuture futureWithFailure:openPortResponse]; }
         
         return udpSocket;
     }];

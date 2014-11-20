@@ -234,7 +234,7 @@ andSynchronizationSourceIdentifier:synchronizedSourceIdentifier
         }
     }
     
-    if (!self.hasExtensionHeader) return;
+    if (!self.hasExtensionHeader) { return; }
     
     *minSize += EXTENSION_HEADER_IDENTIFIER_LENGTH + EXTENSION_HEADER_LENGTH_LENGTH;
     checkOperationDescribe(packetData.length >= *minSize, @"Rtp packet ends before header of extension header finished.");
@@ -264,7 +264,7 @@ andSynchronizationSourceIdentifier:synchronizedSourceIdentifier
         }
     }
     
-    if (!hasPadding) return;
+    if (!hasPadding) { return; }
     
     self.padding = [packetData uint8At:packetData.length - 1];
     checkOperationDescribe(self.padding > 0, @"Padding length must be at least 1 because it includes the suffix byte specifying the length.");
@@ -301,7 +301,7 @@ andSynchronizationSourceIdentifier:synchronizedSourceIdentifier
 }
 
 - (NSData*)generateExtensionHeaderData {
-    if (!self.hasExtensionHeader) return [[NSData alloc] init];
+    if (!self.hasExtensionHeader) { return [[NSData alloc] init]; }
     
     return [@[
             [NSData dataWithBigEndianBytesOfUInt16:self.extensionHeaderIdentifier],
@@ -354,25 +354,25 @@ andSynchronizationSourceIdentifier:synchronizedSourceIdentifier
 }
 
 - (bool)isEqualToRTPPacket:(RTPPacket*)other {
-    if (other                                == nil)                                   return false;
-    if (self.version                         != other.version)                         return false;
-    if (self.padding                         != other.padding)                         return false;
-    if (self.hasExtensionHeader              != other.hasExtensionHeader)              return false;
-    if (self.isMarkerBitSet                  != other.isMarkerBitSet)                  return false;
-    if (self.payloadType                     != other.payloadType)                     return false;
-    if (self.timeStamp                       != other.timeStamp)                       return false;
-    if (self.synchronizationSourceIdentifier != other.synchronizationSourceIdentifier) return false;
-    if (self.sequenceNumber                  != other.sequenceNumber)                  return false;
+    if (other                                == nil)                                   { return false; }
+    if (self.version                         != other.version)                         { return false; }
+    if (self.padding                         != other.padding)                         { return false; }
+    if (self.hasExtensionHeader              != other.hasExtensionHeader)              { return false; }
+    if (self.isMarkerBitSet                  != other.isMarkerBitSet)                  { return false; }
+    if (self.payloadType                     != other.payloadType)                     { return false; }
+    if (self.timeStamp                       != other.timeStamp)                       { return false; }
+    if (self.synchronizationSourceIdentifier != other.synchronizationSourceIdentifier) { return false; }
+    if (self.sequenceNumber                  != other.sequenceNumber)                  { return false; }
     
-    if (![self.payload isEqualToData:other.payload])                                   return false;
+    if (![self.payload isEqualToData:other.payload])                                   { return false; }
     
-    if (![self.contributingSourceIdentifiers isEqualToArray:other.contributingSourceIdentifiers]) return false;
+    if (![self.contributingSourceIdentifiers isEqualToArray:other.contributingSourceIdentifiers]) { return false; }
     if (self.hasExtensionHeader) {
-        if (self.extensionHeaderIdentifier != other.extensionHeaderIdentifier) return false;
-        if (![self.extensionHeaderData isEqualToData:other.extensionHeaderData]) return false;
+        if (self.extensionHeaderIdentifier != other.extensionHeaderIdentifier) { return false; }
+        if (![self.extensionHeaderData isEqualToData:other.extensionHeaderData]) { return false; }
     }
     
-    if (![[self rawPacketDataUsingInteropOptions:@[]] isEqualToData:[other rawPacketDataUsingInteropOptions:@[]]]) return false;
+    if (![[self rawPacketDataUsingInteropOptions:@[]] isEqualToData:[other rawPacketDataUsingInteropOptions:@[]]]) { return false; }
     
     return true;
 }

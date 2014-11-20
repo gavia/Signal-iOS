@@ -124,7 +124,7 @@
 }
 
 - (void)transmitCurrentHandshakePacket {
-    if (self.done) return;
+    if (self.done) { return; }
     
     requireState(self.currentPacketToRetransmit != nil);
     [self.handshakeSocket send:self.currentPacketToRetransmit];
@@ -147,7 +147,7 @@
 }
 
 - (void)handleRetransmit {
-    if (self.done) return;
+    if (self.done) { return; }
     self.currentPacketTransmitCount = 0;
     if (self.currentPacketTransmitCount > MAX_RETRANSMIT_COUNT) {
         self.done = true;
@@ -187,7 +187,7 @@
 
 - (void)handleHandshakePacket:(HandshakePacket*)packet {
     require(packet != nil);
-    if (self.done) return;
+    if (self.done) { return; }
     
     HandshakePacket* response = [self.zrtpRole handlePacket:packet];
     if (response != nil) {

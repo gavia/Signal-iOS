@@ -388,7 +388,7 @@ void onAddressBookChanged(ABAddressBookRef notifyAddressBook, CFDictionaryRef in
     NSArray* nameStrings = [nameString componentsSeparatedByCharactersInSet:whitespaceSet];
 
     return [queryStrings all:^int(NSString* query) {
-        if (query.length == 0) return YES;
+        if (query.length == 0) { return YES; }
         return [nameStrings any:^int(NSString* nameWord) {
             NSStringCompareOptions searchOpts = NSCaseInsensitiveSearch | NSAnchoredSearch;
             return [nameWord rangeOfString:query options:searchOpts].location != NSNotFound;
@@ -400,7 +400,7 @@ void onAddressBookChanged(ABAddressBookRef notifyAddressBook, CFDictionaryRef in
     NSString* phoneNumberString = phoneNumber.localizedDescriptionForUser;
     NSString* searchString = phoneNumberString.digitsOnly;
 
-    if (queryString.length == 0) return YES;
+    if (queryString.length == 0) { return YES; }
     NSStringCompareOptions searchOpts = NSCaseInsensitiveSearch | NSAnchoredSearch;
     return [searchString rangeOfString:queryString options:searchOpts].location != NSNotFound;
 }

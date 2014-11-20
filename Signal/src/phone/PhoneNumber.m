@@ -155,7 +155,7 @@ static NSString* const RPDefaultsKeyPhoneNumberCanonical = @"RPDefaultsKeyPhoneN
                             numberFormat:NBEPhoneNumberFormatINTERNATIONAL
                                    error:&formatError];
     
-    if (formatError != nil) return self.e164;
+    if (formatError != nil) { return self.e164; }
     return pretty;
 }
 

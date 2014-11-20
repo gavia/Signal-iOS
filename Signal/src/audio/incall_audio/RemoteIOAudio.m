@@ -175,14 +175,14 @@ static bool doesActiveInstanceExist;
 
 - (RemoteIOBufferListWrapper*)tryTakeUnusedBuffer {
     RemoteIOBufferListWrapper* buffer = (RemoteIOBufferListWrapper*)[self.unusedBuffers anyObject];
-    if (buffer == nil) return nil;
+    if (buffer == nil) { return nil; }
     [self.unusedBuffers removeObject:buffer];
     return buffer;
 }
 
 - (void)returnUsedBuffer:(RemoteIOBufferListWrapper*)buffer {
     require(buffer != nil);
-    if (self.state == RemoteIOAudioStateTerminated) return; // in case a buffer was in use as termination occurred
+    if (self.state == RemoteIOAudioStateTerminated) { return; } // in case a buffer was in use as termination occurred
     [self.unusedBuffers addObject:buffer];
 }
 
@@ -247,7 +247,7 @@ static OSStatus recordingCallback(void *inRefCon,
 
 - (void)onRecordedDataIntoBuffer:(RemoteIOBufferListWrapper*)buffer {
     @synchronized(self) {
-        if (self.state == RemoteIOAudioStateTerminated) return;
+        if (self.state == RemoteIOAudioStateTerminated) { return; }
         NSData* recordedAudioVolatile = [NSData dataWithBytesNoCopy:[buffer audioBufferList]->mBuffers[0].mData
                                                              length:[buffer sampleCount]*SAMPLE_SIZE_IN_BYTES
                                                        freeWhenDone:NO];
@@ -262,7 +262,7 @@ static OSStatus recordingCallback(void *inRefCon,
 
 - (void)populatePlaybackQueueWithData:(NSData*)data {
     require(data != nil);
-    if (data.length == 0) return;
+    if (data.length == 0) { return; }
     @synchronized(self) {
         [self.playbackQueue enqueueData:data];
     }
@@ -302,7 +302,7 @@ static OSStatus playbackCallback(void *inRefCon,
 
 - (void)onRequestedPlaybackDataAmount:(NSUInteger)requestedByteCount andHadAvailableAmount:(NSUInteger)availableByteCount {
     @synchronized(self) {
-        if (self.state == RemoteIOAudioStateTerminated) return;
+        if (self.state == RemoteIOAudioStateTerminated) { return; }
     }
     NSUInteger consumedByteCount = availableByteCount >= requestedByteCount ? requestedByteCount : 0;
     NSUInteger remainingByteCount = availableByteCount - consumedByteCount;
@@ -322,7 +322,7 @@ static OSStatus playbackCallback(void *inRefCon,
 }
 
 - (void)checkDone:(OSStatus)resultCode {
-    if (resultCode == kAudioSessionNoError) return;
+    if (resultCode == kAudioSessionNoError) { return; }
     
     NSString* failure;
     if (resultCode == kAudioServicesUnsupportedPropertyError) {

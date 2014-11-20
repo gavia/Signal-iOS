@@ -33,7 +33,7 @@
 }
 
 - (void)registerWatcher:(id<JitterQueueNotificationReceiver>)watcher {
-    if (watcher == nil) return;
+    if (watcher == nil) { return; }
     [self.watchers addObject:watcher];
 }
 
@@ -88,7 +88,7 @@
 }
 
 - (bool)tryForceSyncIfNecessary:(uint16_t)sequenceNumber {
-    if (self.readHeadSpan <= READ_HEAD_BAD_SPAN_THRESHOLD) return false;
+    if (self.readHeadSpan <= READ_HEAD_BAD_SPAN_THRESHOLD) { return false; }
     
     if (self.resultPriorityQueue != nil) { // (only log resyncs, not the initial sync)
         for (id<JitterQueueNotificationReceiver> watcher in self.watchers) {
@@ -115,7 +115,7 @@
 }
 
 - (void)discardExcess {
-    if (self.resultPriorityQueue.count <= MAXIMUM_JITTER_QUEUE_SIZE_BEFORE_DISCARDING) return;
+    if (self.resultPriorityQueue.count <= MAXIMUM_JITTER_QUEUE_SIZE_BEFORE_DISCARDING) { return; }
     
     EncodedAudioPacket* discarded = [self.resultPriorityQueue dequeue];
     uint16_t discardedSequenceNumber = [discarded sequenceNumber];
@@ -187,7 +187,7 @@
 }
 
 - (int16_t)currentBufferDepth {
-    if (self.readHeadSpan > READ_HEAD_BAD_SPAN_THRESHOLD) return 0;
+    if (self.readHeadSpan > READ_HEAD_BAD_SPAN_THRESHOLD) { return 0; }
     return [NumberUtil congruentDifferenceMod2ToThe16From:self.readHeadMin + self.readHeadSpan - 1 to:self.largestLatestEnqueued];
 }
 

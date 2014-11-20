@@ -48,8 +48,8 @@
 
 //todo: set custom dispaly logic via block for runtime decision
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
-    if (action == @selector(paste:)) return nil != self.pasteBlock;
-    if (action == @selector(copy:)) return nil != self.copyBlock;
+    if (action == @selector(paste:)) { return nil != self.pasteBlock; }
+    if (action == @selector(copy:)) { return nil != self.copyBlock; }
     
     return NO;
 }

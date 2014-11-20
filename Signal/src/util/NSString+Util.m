@@ -72,7 +72,7 @@
 
 - (NSString*)withPrefixRemovedElseNull:(NSString*)prefix {
     require(prefix != nil);
-    if (prefix.length > 0 && ![self hasPrefix:prefix]) return nil;
+    if (prefix.length > 0 && ![self hasPrefix:prefix]) { return nil; }
     return [self substringFromIndex:prefix.length];
 }
 

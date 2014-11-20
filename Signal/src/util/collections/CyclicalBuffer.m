@@ -25,7 +25,7 @@
 
 - (void)enqueueData:(NSData*)data {
     require(data != nil);
-    if (data.length == 0) return;
+    if (data.length == 0) { return; }
 
     NSUInteger incomingDataLength = data.length;
     NSUInteger bufferCapacity = self.buffer.length;
@@ -73,7 +73,7 @@
 
 - (NSData*)peekDataWithLength:(NSUInteger)length {
     require(length <= self.count);
-    if (length == 0) return [[NSData alloc] init];
+    if (length == 0) { return [[NSData alloc] init]; }
     
     NSUInteger readSlack = self.buffer.length - self.readOffset;
     
@@ -95,7 +95,7 @@
 - (NSData*)dequeuePotentialyVolatileDataWithLength:(NSUInteger)length {
     NSUInteger readSlack = self.buffer.length - self.readOffset;
     
-    if (readSlack < length) return [self dequeueDataWithLength:length];
+    if (readSlack < length) { return [self dequeueDataWithLength:length]; }
     
     NSData* result = [self.buffer subdataVolatileWithRange:NSMakeRange(self.readOffset, length)];
     

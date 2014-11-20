@@ -75,7 +75,7 @@
 
 - (TOCFuture*)interactiveCallAccepted {
     return [self.interactiveCallAcceptedOrDenied.future thenTry:^id(NSNumber* accepted) {
-        if ([accepted boolValue]) return accepted;
+        if ([accepted boolValue]) { return accepted; }
         
         return [TOCFuture futureWithFailure:[[CallTermination alloc] initWithType:CallTerminationTypeRejectedLocal
                                                                        andFailure:accepted
@@ -89,7 +89,7 @@
 
 - (void)unrestrictedAdvanceCallProgressTo:(CallProgressType)type {
     [self.progress adjustValue:^id(CallProgress* oldValue) {
-        if (type < [oldValue type]) return oldValue;
+        if (type < [oldValue type]) { return oldValue; }
         return [[CallProgress alloc] initWithType:type];
     }];
 }
@@ -141,7 +141,7 @@
                                                     andFailure:failureInfo
                                                 andMessageInfo:relatedInfo];
     
-    if (![self.termination trySetResult:t]) return;
+    if (![self.termination trySetResult:t]) { return; }
     [self unrestrictedAdvanceCallProgressTo:CallProgressTypeTerminated];
     [self.interactiveCallAcceptedOrDenied trySetFailure:t];
     [self.canceller cancel];

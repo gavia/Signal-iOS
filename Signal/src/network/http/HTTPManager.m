@@ -91,7 +91,7 @@
                                               unlessCancelled:unlessCancelledToken];
     
     return [futureResponse then:^id(HTTPResponse* response) {
-        if (!response.isOkResponse) return [TOCFuture futureWithFailure:response];
+        if (!response.isOkResponse) { return [TOCFuture futureWithFailure:response]; }
         return response;
     }];
 }

@@ -27,7 +27,7 @@
 
 - (NSNumber*)tryFindIndexOf:(NSData*)subData {
     require(subData != nil);
-    if (subData.length > self.length) return nil;
+    if (subData.length > self.length) { return nil; }
     
     NSUInteger subDataLength = subData.length;
     NSUInteger excessLength = self.length - subDataLength;
@@ -43,7 +43,7 @@
 }
 
 - (NSString*)encodedAsHexString {
-    if (![self bytes]) return @"";
+    if (![self bytes]) { return @""; }
     
     NSMutableString* result = [[NSMutableString alloc] init];
     for (NSUInteger i = 0; i < self.length; ++i)
@@ -54,7 +54,7 @@
 
 - (NSString*)decodedAsUtf8 {
     // workaround for empty data having nil bytes
-    if (self.length == 0) return @"";
+    if (self.length == 0) { return @""; }
     
     [NSString stringWithUTF8String:[self bytes]];
     NSString* result = [[NSString alloc] initWithData:self encoding:NSUTF8StringEncoding];
@@ -64,7 +64,7 @@
 
 - (NSString*)decodedAsAscii {
     // workaround for empty data having nil bytes
-    if (self.length == 0) return @"";
+    if (self.length == 0) { return @""; }
     // workaround for initWithData not enforcing the fact that NSASCIIStringEncoding means strict 7-bit
     for (NSUInteger i = 0; i < self.length; i++) {
         checkOperationDescribe(([self uint8At:i] & 0x80) == 0, @"Invalid ascii data.");

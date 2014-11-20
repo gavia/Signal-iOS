@@ -49,8 +49,8 @@
     struct sockaddr sock;
     memcpy(&sock, [sockaddrData bytes], sizeof(struct sockaddr));
     
-    if (sock.sa_family == AF_INET) return [self initFromIPv4SockaddrData:sockaddrData];
-    if (sock.sa_family == AF_INET6) return [self initFromIPv6SockaddrData:sockaddrData];
+    if (sock.sa_family == AF_INET) { return [self initFromIPv4SockaddrData:sockaddrData]; }
+    if (sock.sa_family == AF_INET6) { return [self initFromIPv6SockaddrData:sockaddrData]; }
     
     [BadArgument raise:[NSString stringWithFormat:@"Unrecognized sockaddr family: %d", sock.sa_family]];
     return nil;

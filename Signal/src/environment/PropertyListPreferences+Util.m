@@ -33,7 +33,7 @@
     NSData* data         = [self tryGetValueForKey:PHONE_DIRECTORY_BLOOM_FILTER_DATA_KEY];
     NSDate* expiration   = [self tryGetValueForKey:PHONE_DIRECTORY_EXPIRATION];
     
-    if (hashCount == 0 || data.length == 0 || expiration == nil) return nil;
+    if (hashCount == 0 || data.length == 0 || expiration == nil) { return nil; }
     BloomFilter* bloomFilter = [[BloomFilter alloc] initWithHashCount:hashCount andData:data];
     return [[PhoneNumberDirectoryFilter alloc] initWithBloomFilter:bloomFilter andExpirationDate:expiration];
 }
@@ -42,7 +42,7 @@
     [self setValueForKey:PHONE_DIRECTORY_BLOOM_FILTER_DATA_KEY toValue:nil];
     [self setValueForKey:PHONE_DIRECTORY_BLOOM_FILTER_HASH_COUNT_KEY toValue:nil];
     [self setValueForKey:PHONE_DIRECTORY_EXPIRATION toValue:nil];
-    if (phoneNumberDirectoryFilter == nil) return;
+    if (phoneNumberDirectoryFilter == nil) { return; }
     
     NSData* data        = [[phoneNumberDirectoryFilter bloomFilter] data];
     NSNumber* hashCount = @([[phoneNumberDirectoryFilter bloomFilter] hashCount]);
@@ -60,7 +60,7 @@
 
 - (NSTimeInterval)getCachedOrDefaultDesiredBufferDepth {
     id v = [self tryGetValueForKey:CALL_STREAM_DES_BUFFER_LEVEL_KEY];
-    if (v == nil) return DEFAULT_CALL_STREAM_DES_BUFFER_LEVEL;
+    if (v == nil) { return DEFAULT_CALL_STREAM_DES_BUFFER_LEVEL; }
     return [v doubleValue];
 }
 

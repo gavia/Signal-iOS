@@ -72,12 +72,12 @@
 
 - (HandshakePacket*)handlePacket:(HandshakePacket*)packet {
     @try {
-        if      (self.packetExpectation == EXPECTING_NOTHING)     return nil;
-        else if (self.packetExpectation == EXPECTING_HELLO)       return [self handleHello:packet];
-        else if (self.packetExpectation == EXPECTING_HELLO_ACK)   return [self handleHelloAck:packet];
-        else if (self.packetExpectation == EXPECTING_DH)          return [self handleDH:packet];
-        else if (self.packetExpectation == EXPECTING_CONFIRM)     return [self handleConfirmOne:packet];
-        else if (self.packetExpectation == EXPECTING_CONFIRM_ACK) return [self handleConfirmAck:packet];
+        if      (self.packetExpectation == EXPECTING_NOTHING)     { return nil; }
+        else if (self.packetExpectation == EXPECTING_HELLO)       { return [self handleHello:packet]; }
+        else if (self.packetExpectation == EXPECTING_HELLO_ACK)   { return [self handleHelloAck:packet]; }
+        else if (self.packetExpectation == EXPECTING_DH)          { return [self handleDH:packet]; }
+        else if (self.packetExpectation == EXPECTING_CONFIRM)     { return [self handleConfirmOne:packet]; }
+        else if (self.packetExpectation == EXPECTING_CONFIRM_ACK) { return [self handleConfirmAck:packet]; }
         else return nil;
     
     } @catch (SecurityFailure *exception) {
@@ -166,8 +166,8 @@
 }
 
 - (bool)isAuthenticatedAudioDataImplyingConf2Ack:(id)packet {
-    if (self.packetExpectation != EXPECTING_CONFIRM_ACK) return false;
-    if (![packet isKindOfClass:[RTPPacket class]]) return false;
+    if (self.packetExpectation != EXPECTING_CONFIRM_ACK) { return false; }
+    if (![packet isKindOfClass:[RTPPacket class]]) { return false; }
     
     @try {
         SRTPStream* incomingContext = [[SRTPStream alloc] initWithCipherKey:[self.masterSecret responderSrtpKey]

@@ -59,7 +59,7 @@
 
 - (EncodedAudioFrame*)pullFrame {
     EncodedAudioFrame* frame = [self.audioPacker tryGetReceivedFrame];
-    if (frame != nil) return frame;
+    if (frame != nil) { return frame; }
     
     EncodedAudioPacket* potentiallyMissingPacket = [self.jitterQueue tryDequeue];
     [self.audioPacker unpackPotentiallyMissingAudioPacket:potentiallyMissingPacket];
@@ -69,7 +69,7 @@
 - (NSData*)tryDecodeOrInferFrame {
     EncodedAudioFrame* frame = [self pullFrame];
     self.haveReceivedDataYet |= !frame.isMissingAudioData;
-    if (!self.haveReceivedDataYet) return nil;
+    if (!self.haveReceivedDataYet) { return nil; }
     
     NSData* raw = [self.codec decode:frame.tryGetAudioData];
     double stretch = [self.stretchFactorController getAndUpdateDesiredStretchFactor];

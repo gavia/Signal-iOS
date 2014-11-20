@@ -58,7 +58,7 @@
     checkOperation(([data tryFindIndexOf:@"\n".encodedAsAscii] == nil) == ([data tryFindIndexOf:@"\r\n".encodedAsAscii] == nil));
     
     NSNumber* tryHeaderLength = [data tryFindIndexOf:@"\r\n\r\n".encodedAsUtf8];
-    if (tryHeaderLength == nil) return nil;
+    if (tryHeaderLength == nil) { return nil; }
     NSUInteger headerLength = [tryHeaderLength unsignedIntegerValue];
     NSString* fullHeader = [[data take:headerLength] decodedAsUtf8];
     headerLength += 4; // account for \r\n\r\n
@@ -92,7 +92,7 @@
     
     bool hasContent = contentLengthParsed != nil;
     NSUInteger contentLength = [contentLengthParsed unsignedIntegerValue];
-    if (headerLength + contentLength > data.length) return nil; // need more data
+    if (headerLength + contentLength > data.length) { return nil; } // need more data
     NSData* optionalBodyData = hasContent ? [data subdataWithRange:NSMakeRange(headerLength, contentLength)] : nil;
     
     *usedLengthPtr = headerLength + contentLength;

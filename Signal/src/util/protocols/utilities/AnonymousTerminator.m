@@ -24,7 +24,7 @@
 #pragma mark Terminable
 
 - (void)terminate {
-    if (self.alreadyCalled) return;
+    if (self.alreadyCalled) { return; }
     self.alreadyCalled = YES;
     self.terminateBlock();
 }

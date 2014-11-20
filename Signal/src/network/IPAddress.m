@@ -172,8 +172,8 @@
 /*
 +(IPAddress*) tryGetIPAddressFromString:(NSString*)text {
  require(text != nil);
- if ([IPAddress isIPv4Text:text]) return [[IPAddress alloc] initIPv4AddressFromString:text];
- if ([IPAddress isIPv6Text:text]) return [[IPAddress alloc] initIPv6AddressFromString:text];
+ if ([IPAddress isIPv4Text:text]) { return [[IPAddress alloc] initIPv4AddressFromString:text]; }
+ if ([IPAddress isIPv6Text:text]) { return [[IPAddress alloc] initIPv6AddressFromString:text]; }
  return nil;
  }
 */

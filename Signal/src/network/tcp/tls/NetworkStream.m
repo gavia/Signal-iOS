@@ -75,7 +75,7 @@
 
 - (void)terminate {
     @synchronized(self) {
-        if (self.closedLocally) return;
+        if (self.closedLocally) { return; }
         self.closedLocally = true;
         [self.futureConnectedAndWritableSource trySetResult:@NO]; // did not connect, no error
         [self.futureOpenedSource trySetResult:@NO];
@@ -94,10 +94,10 @@
 }
 
 - (void)tryWriteBufferedData {
-    if (!self.futureConnectedAndWritableSource.future.hasResult) return;
-    if (![[self.futureConnectedAndWritableSource.future forceGetResult] isEqual:@YES]) return;
+    if (!self.futureConnectedAndWritableSource.future.hasResult) { return; }
+    if (![[self.futureConnectedAndWritableSource.future forceGetResult] isEqual:@YES]) { return; }
     NSStreamStatus status = [self.outputStream streamStatus];
-    if (status < NSStreamStatusOpen) return;
+    if (status < NSStreamStatusOpen) { return; }
     if (status >= NSStreamStatusAtEnd) {
         [self.rawDataHandler handleError:@"Wrote to ended/closed/errored stream." 
                              relatedInfo:nil
@@ -137,7 +137,7 @@
 
 - (void)startProcessingStreamEventsEvenWithoutHandler {
     @synchronized(self) {
-        if (self.started) return;
+        if (self.started) { return; }
         self.started = true;
         
         [self.inputStream open];
@@ -156,7 +156,7 @@
 }
 
 - (void)onOpenCompleted {
-    if (![self.futureOpenedSource trySetResult:@YES]) return;
+    if (![self.futureOpenedSource trySetResult:@YES]) { return; }
     
     @try {
         [self.remoteEndPoint handleStreamsOpened:[[StreamPair alloc] initWithInput:self.inputStream
@@ -169,7 +169,7 @@
 - (void)onSpaceAvailableToWrite {
     [self tryWriteBufferedData];
     
-    if (self.futureConnectedAndWritableSource.future.state != TOCFutureState_AbleToBeSet) return;
+    if (self.futureConnectedAndWritableSource.future.state != TOCFutureState_AbleToBeSet) { return; }
     
     TOCFuture* checked = [self.remoteEndPoint asyncHandleStreamsConnected:[[StreamPair alloc] initWithInput:self.inputStream
                                                                                                   andOutput:self.outputStream]];
@@ -205,9 +205,9 @@
 }
 
 - (void)onBytesAvailableToRead {
-    if (self.rawDataHandler == nil) return;
-    if (!self.futureConnectedAndWritableSource.future.hasResult) return;
-    if (![self.futureConnectedAndWritableSource.future.forceGetResult isEqual:@YES]) return;
+    if (self.rawDataHandler == nil) { return; }
+    if (!self.futureConnectedAndWritableSource.future.hasResult) { return; }
+    if (![self.futureConnectedAndWritableSource.future.forceGetResult isEqual:@YES]) { return; }
     
     while (self.inputStream.hasBytesAvailable) {
         NSInteger numRead = [self.inputStream read:[self.readBuffer mutableBytes] maxLength:self.readBuffer.length];

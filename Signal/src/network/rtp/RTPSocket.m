@@ -31,7 +31,7 @@
     @synchronized(self) {
         bool isFirstTime = self.currentHandler == nil;
         self.currentHandler = handler;
-        if (!isFirstTime) return;
+        if (!isFirstTime) { return; }
     }
     
     PacketHandlerBlock valueHandler = ^(id packet) {

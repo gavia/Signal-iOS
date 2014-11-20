@@ -42,7 +42,7 @@
 - (void)updateWithNextSample:(double)sampleValue
             withSampleWeight:(double)weight {
     require(weight >= 0);
-    if (weight == 0) return;
+    if (weight == 0) { return; }
     
     double decayPerWeightedSample = 1 - pow(1 - self.decayPerUnitSample, weight);
     self.estimate *= 1 - decayPerWeightedSample;

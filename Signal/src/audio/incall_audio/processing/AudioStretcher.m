@@ -30,7 +30,7 @@
     require(stretchFactor > MIN_STRETCH_FACTOR);
     require(stretchFactor < MAX_STRETCH_FACTOR);
     
-    if (audioData == nil) return nil;
+    if (audioData == nil) { return nil; }
     
     checkOperationDescribe(time_scale_rate(&_timeScaleState, (float)stretchFactor) == 0, @"Changing time scaling");
     

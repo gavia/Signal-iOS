@@ -56,7 +56,7 @@
     require(action != NULL);
     require(runLoop != nil);
     require(delay >= 0);
-    if (delay == INFINITY) return;
+    if (delay == INFINITY) { return; }
     
     [self scheduleHelper:action
               withPeriod:delay
@@ -129,7 +129,7 @@
     
     Operation* callbackUnlessCancelled = [[Operation alloc] initWithAction:^{
         @synchronized(cancelLock) {
-            if (hasBeenCancelled) return;
+            if (hasBeenCancelled) { return; }
             callback();
         }
     }];
