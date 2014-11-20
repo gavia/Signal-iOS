@@ -35,7 +35,9 @@
         sound.completionBlock = ^(SoundInstance* soundInstance) {
             [self removeSoundFromManifest:soundInstance];
             id delegate = self.delegate;
-            [delegate didCompleteSoundInstanceOfType:soundInstance.soundInstanceType];
+            if (delegate) {
+                [delegate didCompleteSoundInstanceOfType:soundInstance.soundInstanceType];
+            }
         };
         [self.currentActiveAudioPlayers setValue:sound forKey:sound.getId];
     }
